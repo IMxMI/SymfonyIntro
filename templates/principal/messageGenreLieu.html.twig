@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tuto symfony {% endblock %}
+
+{% block body %}
+    <h1>Vous êtes né dans le département : {{ lieu }}!</h1>
+    <h2>Vous êtes {% if genre == 'm' %}un garçon !{%elseif genre == 'f'%}une fille !{%else%}de sexe inconnu !!{% endif %}</h2>
+    <h3> Nous somme le {{ date }}</h3>
+{% endblock %}
