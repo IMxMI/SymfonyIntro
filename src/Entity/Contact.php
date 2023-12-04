@@ -15,6 +15,8 @@ class Contact {
     private ?int $id = null;
 
     #[ORM\Column(length: 1)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(['M', 'F'])]
     private ?string $titre = null;
 
     #[ORM\Column(length: 100)]
@@ -30,7 +32,7 @@ class Contact {
     #[Assert\Regex("/^[0][6-7](\s[0-9]{2}){4}/")]
     private ?string $tel = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(name:'datepremiercontact', type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datePremierContact = null;
 
     public function getId(): ?int {
