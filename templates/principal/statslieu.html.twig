@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titre }} {% endblock %}
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Ville</th>
+                <th>Employés</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lieu in lieus %}
+                <tr>
+                    <td>{{ lieu.getNom() }}</td>
+                    <td>{{ lieu.getVille() }}</td>
+                    <td>{{ lieu.getEmployes()|length }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
