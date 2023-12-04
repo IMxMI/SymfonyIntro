@@ -8,15 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Contact;
 
+#[Route('/contact', name:'contact_')]
 class ContactController extends AbstractController {
 
     #[Route('/demande', name: 'demande')]
-    public function demandeContact(Request $request, GestionContact $gestionContact): Response {
+    public function demandeContact(Request $request): Response {
         $contact = new Contact();
         $form = $this->createFormBuilder($contact)
                 ->add('titre')
                 ->add('nom')
-                ->add('prenom')
                 ->add('mail')
                 ->add('tel')
                 ->getForm();
