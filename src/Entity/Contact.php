@@ -24,6 +24,9 @@ class Contact
     private ?string $mail = null;
 
     #[ORM\Column(length: 15)]
+    #[Assert\Email(
+            message: "L'adresse mail fournie {{value}} n'est pas valide."
+    )]
     private ?string $tel = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
