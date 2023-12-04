@@ -12,12 +12,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Service\GestionContact;
 
 #[Route('/contact', name: 'contact_')]
 class ContactController extends AbstractController {
 
     #[Route('/demande', name: 'demande')]
-    public function demandeContact(Request $request): Response {
+    public function demandeContact(Request $request, GestionContact $gestionContact): Response {
         $contact = new Contact();
         $form = $this->createFormBuilder($contact)
                 ->add('titre', ChoiceType::class, array(
@@ -45,6 +47,11 @@ class ContactController extends AbstractController {
                         ))
                 ->add('Envoyer', SubmitType::class)
                 ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gestionContact->creerContact($contact);
+            return $this->redirectToRoute("home_homepage");
+        }
         return $this->render('contact/contact.html.twig', [
                     'formContact' => $form->createView(),
                     'titre' => 'Formulaire de conttact',
