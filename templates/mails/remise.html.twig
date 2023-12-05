@@ -29,8 +29,8 @@
                         <td>{{ produit.getId() }}</td>
                         <td>{{ produit.getLibelle() }}</td>
                         <td>{{ produit.getPuht() }}</td>
-                        <td>with two columns</td>
-                        <td>with two columns</td>
+                        <td>{{ produit.getRemise() }}</td>
+                        <td>{{ produit.getPuht() - produit.getRemise() }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -43,6 +43,6 @@
 
         La direction
 
-        <br><p><a>Voir ici</a> Un petit aperçu de la croisère ?</p>
+        <br><p><a href="https://youtu.be/aIVsz5Pj0eE?si=v-v0AnEPwpRgLbpE">Voir ici</a> Un petit aperçu de la croisère ?</p>
         {# Makes an absolute URL to the /images/logo.png file #}
-        <p><img src="{{ email.image('@images/symfony.png') }}" width="150" title="cafe" alt="monimagecafe" ><p>
+        <p><img src="{{ email.image('@images/testtrza.jpg') }}" width="150" title="cafe" alt="monimagecafe" ><p>

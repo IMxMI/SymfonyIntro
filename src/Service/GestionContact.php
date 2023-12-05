@@ -7,6 +7,7 @@ use App\Entity\Contact;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use App\Entity\Produit;
 
 class GestionContact {
 
@@ -35,6 +36,25 @@ class GestionContact {
                 ->context([
             'contact' => $contact
         ]);
+        $this->mailer->send($email);
+    }
+
+    public function envoieTousPromotion() {
+        $contacts = $this->em->getRepository(Contact::class)->findAll();
+        $produits = $this->em->getRepository(Produit::class)->findAll();
+        foreach ($contacts as $contact) {
+            $email = (new TemplatedEmail())
+                    ->from(new Address('mxm.vernoux@gmail.com', 'Contact Symfony'))
+                    ->to($contact->getMail())
+                    ->subject('Promotion voyage')
+                    ->text('Bonjour')
+                    ->attachFromPath('assets/pdf/presentation.pdf', 'Présentation')
+                    ->htmlTemplate('mails/remise.html.twig')
+                    ->context([
+                'contact' => $contact,
+                'produits' => $produits
+            ]);
+        }
         $this->mailer->send($email);
     }
 }

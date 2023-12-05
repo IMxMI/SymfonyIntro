@@ -59,4 +59,11 @@ class ContactController extends AbstractController {
                     'titre' => 'Formulaire de conttact',
         ]);
     }
+    
+    #[Route('/envoitous', name:'envoitous')]
+    public function envoiTous(GestionContact $gestionContact, EntityManagerInterface $entityManager): Response {
+        $gestionContact->envoieTousPromotion();
+        $this->addFlash('notification', 'Email envoyé');
+        return $this->redirectToRoute("home_homepage");
+    }
 }
