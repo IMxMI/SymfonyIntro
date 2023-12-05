@@ -50,6 +50,8 @@ class ContactController extends AbstractController {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $gestionContact->creerContact($contact);
+            $gestionContact->envoieMailContact($contact);
+            $this->addFlash('notification', "Votre message a bien été envoyé. L'équipe vous contactera au plus vite");
             return $this->redirectToRoute("home_homepage");
         }
         return $this->render('contact/contact.html.twig', [
