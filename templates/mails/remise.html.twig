@@ -1,0 +1,48 @@
+<h3>Demande de contact</h3>
+
+<p>
+    Bonjour {% if(contact.getTitre()=='M') %}
+    Monsieur
+    {% else %}
+        Madame
+        {% endif %}
+            {{ contact.getNom()|title }}!
+
+        <p>
+            Vous êtes le grand gagnant de notre jeux concour !
+            <br>
+            Notre best of de voyages en promotion
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Num</th>
+                    <th>Nom du voyage</th>
+                    <th>Prix catalogue</th>
+                    <th>Remise</th>
+                    <th>Prix remisé</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        <td>{{ produit.getId() }}</td>
+                        <td>{{ produit.getLibelle() }}</td>
+                        <td>{{ produit.getPuht() }}</td>
+                        <td>with two columns</td>
+                        <td>with two columns</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        En attendant que nous vous rappelions, vous pouvez visiter notre site <a href-"https://moodle.benoitroche.fr">en cliquant ici</a>.
+        <p>
+            Merci pour votre confiance
+        </p>
+
+        La direction
+
+        <br><p><a>Voir ici</a> Un petit aperçu de la croisère ?</p>
+        {# Makes an absolute URL to the /images/logo.png file #}
+        <p><img src="{{ email.image('@images/symfony.png') }}" width="150" title="cafe" alt="monimagecafe" ><p>
